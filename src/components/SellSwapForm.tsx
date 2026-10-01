@@ -37,13 +37,13 @@ export default function SellSwapForm({
   }
 
   const fieldClass =
-    "rounded-md border border-surface/25 bg-transparent px-4 py-3 font-mono text-base text-surface placeholder:text-surface/30 focus:border-gold focus:outline-none";
+    "rounded-md border border-surface/10 bg-surface/[0.04] px-4 py-3 font-body text-sm text-surface placeholder:text-surface/35 focus:border-gold focus:outline-none";
   const labelClass =
-    "font-mono text-[11px] uppercase tracking-wideish text-surface/60";
+    "font-body text-[10px] font-semibold uppercase tracking-[0.1em] text-surface/60";
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4" noValidate>
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className={compact ? "grid gap-4 sm:grid-cols-2 xl:grid-cols-4" : "grid gap-4 sm:grid-cols-2"}>
         <div className="flex flex-col gap-1.5">
           <label htmlFor="name" className={labelClass}>
             Your Name
@@ -72,7 +72,7 @@ export default function SellSwapForm({
             placeholder="MA20 XLR"
             value={registration}
             onChange={(e) => setRegistration(e.target.value)}
-            className="rounded-md border border-gold/50 bg-ink px-4 py-3 font-mono text-base font-bold uppercase tracking-platey text-gold placeholder:text-gold/30 focus:border-gold focus:outline-none"
+            className="rounded-md border border-surface/10 bg-surface/[0.04] px-4 py-3 font-plate text-sm font-bold uppercase tracking-platey text-gold placeholder:text-gold/30 focus:border-gold focus:outline-none"
           />
         </div>
 
@@ -115,8 +115,8 @@ export default function SellSwapForm({
         </p>
       )}
 
-      <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <button type="submit" className="btn-primary w-full sm:w-auto">
+      <div className={compact ? "flex flex-col gap-3" : "flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between"}>
+        <button type="submit" className={`btn-primary ${compact ? "w-full py-4" : "w-full sm:w-auto"}`}>
           Send on WhatsApp
           <MessageCircle className="ml-2 h-4 w-4" aria-hidden />
         </button>

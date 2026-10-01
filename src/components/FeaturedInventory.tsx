@@ -21,7 +21,7 @@ export default function FeaturedInventory({ cars }: { cars: Car[] }) {
   }
 
   return (
-    <section className="py-14 sm:py-20">
+    <section className="py-12 sm:py-16">
       <div className="container-page mb-7 flex flex-col gap-5 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
         <SectionHeader
           eyebrow="Browse Inventory"
@@ -61,7 +61,7 @@ export default function FeaturedInventory({ cars }: { cars: Car[] }) {
           <VehicleCard
             key={car.slug}
             car={car}
-            className="w-[82vw] flex-shrink-0 snap-start sm:w-[300px] lg:w-[300px]"
+            className="w-[78vw] flex-shrink-0 snap-start sm:w-[300px] lg:w-[calc((100%-6rem-3.75rem)/4)] lg:min-w-[280px]"
           />
         ))}
       </div>

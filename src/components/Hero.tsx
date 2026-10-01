@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ShieldCheck, Wallet, BadgeCheck } from "lucide-react";
+import { ShieldCheck, Wallet, BadgeCheck, ArrowRight } from "lucide-react";
 import type { Car, SiteSettings } from "@/types";
 import { gsap, useGsapRegister, prefersReducedMotion } from "@/lib/gsapSetup";
 
@@ -85,15 +85,59 @@ export default function Hero({
   }, []);
 
   return (
-    <section ref={rootRef} className="relative overflow-hidden bg-ink text-surface">
-      {/* Text column — width is capped directly so it never fights the image for space. */}
-      <div className="container-page relative z-10 pb-10 pt-24 sm:pb-12 sm:pt-28 lg:min-h-[560px] lg:pb-20 lg:pt-32 xl:min-h-[600px]">
-        <div className="lg:max-w-[46%]">
-          <p data-reveal="eyebrow" className="eyebrow mb-4 text-gold">
+    <section
+      ref={rootRef}
+      className="relative isolate flex flex-col overflow-hidden bg-ink text-surface lg:block lg:min-h-[780px] xl:min-h-[860px]"
+    >
+      {/* Studio light bars (decorative, desktop only) */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 hidden lg:block">
+        <div className="hero-bar absolute left-[56%] top-[20%] h-[17%] w-[3px] rounded-full" />
+        <div className="hero-bar absolute left-[76%] top-[22%] h-[15%] w-[3px] rounded-full" />
+        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink to-transparent" />
+      </div>
+
+      {/* Vehicle image — blended into the hero with CSS masks (no hard edges).
+          lg+: sits behind/right of the copy, bleeding off the right edge.
+          below lg: in flow under the copy, full-bleed with a soft vignette. */}
+      <div
+        data-reveal="image"
+        className="relative -mt-2 mb-0 h-[300px] w-full sm:h-[380px] md:h-[440px] lg:absolute lg:inset-y-0 lg:right-0 lg:z-0 lg:mt-0 lg:h-auto lg:w-[66%]"
+      >
+        {heroCar ? (
+          <Link
+            href={`/cars/${heroCar.slug}`}
+            className="group absolute inset-0 block lg:inset-x-0 lg:bottom-[8%] lg:top-[12%]"
+            aria-label={heroCar.name}
+          >
+            <Image
+              src={heroCar.mainImage}
+              alt={heroCar.name}
+              fill
+              priority
+              sizes="(max-width: 1024px) 100vw, 66vw"
+              className="hero-photo object-cover object-center lg:object-[60%_55%]"
+            />
+          </Link>
+        ) : null}
+        {heroCar && (
+          <div className="pointer-events-none absolute bottom-8 left-5 z-10 sm:left-8 lg:bottom-[14%] lg:left-auto lg:right-10 lg:text-right">
+            <p className="font-display text-sm font-semibold text-surface sm:text-base">
+              {heroCar.name}
+            </p>
+            <p className="font-body text-xs text-gold">Featured this week</p>
+          </div>
+        )}
+      </div>
+
+      {/* Copy column — on mobile it is ordered first, above the image. */}
+      <div className="container-page relative z-10 order-first pb-2 pt-24 sm:pt-28 lg:absolute lg:inset-x-0 lg:top-0 lg:mx-auto lg:pb-0 lg:pt-[170px]">
+        <div className="lg:max-w-[44%]">
+          <p data-reveal="eyebrow" className="eyebrow mb-5 flex items-center gap-3 text-gold">
             {eyebrow}
+            <span aria-hidden className="h-px w-8 bg-gold/70" />
           </p>
 
-          <h1 className="h-display text-4xl text-surface sm:text-5xl md:text-6xl lg:text-[3.4rem]">
+          <h1 className="h-display text-[2.5rem] uppercase leading-[1.04] text-surface sm:text-6xl lg:text-[4.25rem]">
             <span data-reveal="heading-line" className="block overflow-hidden">
               Drive the car
             </span>
@@ -104,15 +148,16 @@ export default function Hero({
 
           <p
             data-reveal="copy"
-            className="mt-4 max-w-md font-body text-sm leading-relaxed text-surface/65 sm:text-base"
+            className="mt-5 max-w-sm font-body text-sm leading-relaxed text-surface/80 sm:text-base"
           >
             Carefully selected used cars, quality checked. Great prices.
             Honest service.
           </p>
 
-          <div data-reveal="buttons" className="mt-6 flex flex-wrap items-center gap-3">
+          <div data-reveal="buttons" className="mt-7 flex flex-wrap items-center gap-3">
             <Link href="/cars" className="btn-primary">
               Browse Cars
+              <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
             <Link href="/sell-swap" className="btn-outline-dark">
               Sell or Swap Your Car
@@ -121,16 +166,16 @@ export default function Hero({
 
           <div
             data-reveal="trust"
-            className="mt-8 flex flex-col gap-4 border-t border-line-dark pt-5 sm:flex-row sm:flex-wrap sm:gap-6"
+            className="mt-9 flex flex-wrap gap-x-7 gap-y-4"
           >
             {trustPoints.map((point) => (
               <div key={point.title} className="flex items-center gap-2.5">
-                <point.icon className="h-4 w-4 flex-shrink-0 text-gold" aria-hidden />
+                <point.icon className="h-5 w-5 flex-shrink-0 text-gold" strokeWidth={1.5} aria-hidden />
                 <div>
-                  <p className="font-display text-sm uppercase tracking-tight text-surface">
+                  <p className="font-body text-xs font-semibold text-surface">
                     {point.title}
                   </p>
-                  <p className="font-body text-[11px] text-surface/45">
+                  <p className="font-body text-[11px] text-surface/50">
                     {point.description}
                   </p>
                 </div>
@@ -140,38 +185,8 @@ export default function Hero({
         </div>
       </div>
 
-      {/* Vehicle image — in normal flow (below text) on mobile/tablet, then bleeds
-          edge-to-edge on the right at lg+ without relying on viewport calc math. */}
-      <div
-        data-reveal="image"
-        className="relative mx-5 mb-8 aspect-[4/3] overflow-hidden sm:mx-8 sm:aspect-[16/9] lg:absolute lg:inset-y-0 lg:right-0 lg:mx-0 lg:mb-0 lg:aspect-auto lg:w-[56%]"
-      >
-        {heroCar ? (
-          <Link href={`/cars/${heroCar.slug}`} className="group relative block h-full w-full bg-graphite">
-            <Image
-              src={heroCar.mainImage}
-              alt={heroCar.name}
-              fill
-              priority
-              sizes="(max-width: 1024px) 100vw, 56vw"
-              className="object-cover transition-transform duration-700 ease-premium group-hover:scale-105"
-            />
-            {/* blend the image into the dark hero rather than a floating card */}
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink via-ink/10 to-transparent" />
-            <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-1/3 bg-gradient-to-r from-ink to-transparent lg:block" />
-            <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-5">
-              <div>
-                <p className="font-display text-base uppercase text-surface">
-                  {heroCar.name}
-                </p>
-                <p className="font-mono text-xs text-gold">Featured this week</p>
-              </div>
-            </div>
-          </Link>
-        ) : (
-          <div className="h-full w-full bg-graphite" />
-        )}
-      </div>
+      {/* Bottom fade so the hero melts into the overlapping enquiry card. */}
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-24 bg-gradient-to-t from-ink to-transparent" />
     </section>
   );
 }

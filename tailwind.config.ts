@@ -10,18 +10,18 @@ const config: Config = {
     extend: {
       colors: {
         ink: {
-          DEFAULT: "#0B0B0C",
-          soft: "#151517",
+          DEFAULT: "#0A0A0B",
+          soft: "#141416",
         },
         graphite: "#1D1D20",
         surface: {
-          DEFAULT: "#FBF9F4",
-          dim: "#F2EEE3",
+          DEFAULT: "#F7F7F5",
+          dim: "#EFEFEC",
         },
         gold: {
-          DEFAULT: "#C9A24B",
-          bright: "#E4C777",
-          dim: "#8C7233",
+          DEFAULT: "#E5B93F",
+          bright: "#F0CB65",
+          dim: "#A8801F",
         },
         mist: "#7A7A7E",
         line: {
@@ -30,29 +30,12 @@ const config: Config = {
         },
       },
       fontFamily: {
-        display: [
-          "Arial Narrow",
-          "Helvetica Neue Condensed",
-          "Helvetica Neue",
-          "Arial",
-          "sans-serif",
-        ],
-        body: [
-          "-apple-system",
-          "BlinkMacSystemFont",
-          "Segoe UI",
-          "Roboto",
-          "Helvetica Neue",
-          "Arial",
-          "sans-serif",
-        ],
-        mono: [
-          "ui-monospace",
-          "SFMono-Regular",
-          "Menlo",
-          "Consolas",
-          "monospace",
-        ],
+        // Inter is the closest match to the mockup's typeface (identified
+        // from a raster screenshot, so this is an approximation).
+        display: ["var(--font-inter)", "Inter", "system-ui", "sans-serif"],
+        body: ["var(--font-inter)", "Inter", "system-ui", "sans-serif"],
+        mono: ["var(--font-inter)", "Inter", "system-ui", "sans-serif"],
+        plate: ["ui-monospace", "SFMono-Regular", "Menlo", "Consolas", "monospace"],
       },
       letterSpacing: {
         tightest: "-0.04em",

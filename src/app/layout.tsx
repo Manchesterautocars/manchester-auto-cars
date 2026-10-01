@@ -1,5 +1,14 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
+
+// Inter (variable, SIL OFL) — self-hosted so no network is needed at build time.
+const inter = localFont({
+  src: "./fonts/Inter-Variable.woff2",
+  variable: "--font-inter",
+  weight: "100 900",
+  display: "swap",
+});
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import MobileActionBar from "@/components/MobileActionBar";
@@ -79,7 +88,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en-GB">
+    <html lang="en-GB" className={inter.variable}>
       <body>
         <script
           type="application/ld+json"

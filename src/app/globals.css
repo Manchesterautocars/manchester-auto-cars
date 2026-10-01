@@ -41,35 +41,64 @@
   }
 
   .eyebrow {
-    @apply font-mono text-[11px] uppercase tracking-platey text-gold-dim;
+    @apply font-body text-[11px] font-semibold uppercase tracking-[0.14em] text-gold-dim;
   }
 
   .h-display {
-    @apply font-display font-bold uppercase tracking-tightest leading-[0.95];
+    @apply font-display font-bold tracking-[-0.02em] leading-[1.05];
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-none bg-gold px-6 py-3 font-mono text-[13px] font-semibold uppercase tracking-wideish text-ink transition-all duration-300 ease-premium hover:bg-gold-bright active:scale-[0.98];
+    @apply inline-flex items-center justify-center gap-2 rounded-md bg-gold px-6 py-3 font-body text-[14px] font-semibold text-ink transition-all duration-300 ease-premium hover:bg-gold-bright active:scale-[0.98];
   }
 
   .btn-outline {
-    @apply inline-flex items-center justify-center gap-2 rounded-none border border-ink/20 px-6 py-3 font-mono text-[13px] font-semibold uppercase tracking-wideish text-ink transition-all duration-300 ease-premium hover:border-ink hover:bg-ink hover:text-surface active:scale-[0.98];
+    @apply inline-flex items-center justify-center gap-2 rounded-md border border-ink/90 bg-ink px-5 py-2.5 font-body text-[13px] font-semibold text-surface transition-all duration-300 ease-premium hover:border-gold hover:bg-ink hover:text-gold active:scale-[0.98];
   }
 
   .btn-outline-dark {
-    @apply inline-flex items-center justify-center gap-2 rounded-none border border-surface/25 px-6 py-3 font-mono text-[13px] font-semibold uppercase tracking-wideish text-surface transition-all duration-300 ease-premium hover:border-gold hover:text-gold active:scale-[0.98];
+    @apply inline-flex items-center justify-center gap-2 rounded-md border border-surface/20 bg-surface/[0.03] px-6 py-3 font-body text-[14px] font-semibold text-surface transition-all duration-300 ease-premium hover:border-gold hover:text-gold active:scale-[0.98];
   }
 
   .btn-whatsapp {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border border-gold/40 bg-transparent px-5 py-2.5 font-mono text-[12px] font-semibold uppercase tracking-wideish text-surface transition-all duration-300 ease-premium hover:border-gold hover:bg-gold/10 hover:text-gold active:scale-[0.98];
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-gold/40 bg-transparent px-5 py-2.5 font-body text-[13px] font-medium text-surface transition-all duration-300 ease-premium hover:border-gold hover:bg-gold/10 hover:text-gold active:scale-[0.98];
   }
 
-  /* Signature element: a UK-plate inspired badge used for registrations & data */
+  /* UK-plate inspired badge for registrations. Keeps a real monospace face. */
   .plate {
-    @apply inline-flex items-center gap-1 border border-gold/70 bg-ink px-3 py-1.5 font-mono text-sm font-bold uppercase tracking-platey text-gold;
+    @apply inline-flex items-center gap-1 rounded-sm border border-gold/70 bg-ink px-3 py-1.5 font-plate text-sm font-bold uppercase tracking-platey text-gold;
   }
 
   .plate-light {
-    @apply inline-flex items-center gap-1 border border-ink/15 bg-surface-dim px-3 py-1.5 font-mono text-sm font-bold uppercase tracking-platey text-ink;
+    @apply inline-flex items-center gap-1 rounded-sm border border-ink/15 bg-surface-dim px-3 py-1.5 font-plate text-sm font-bold uppercase tracking-platey text-ink;
+  }
+
+  /* ---- Hero image blending ------------------------------------------------
+     The vehicle photo is faded into the dark hero with CSS masks so it never
+     reads as a rectangle. Desktop: fades out on the left, top and bottom.
+     Mobile/tablet: fades on all four edges (soft vignette). */
+  .hero-photo {
+    -webkit-mask-image: radial-gradient(ellipse 72% 68% at 50% 50%, #000 38%, transparent 100%);
+    mask-image: radial-gradient(ellipse 72% 68% at 50% 50%, #000 38%, transparent 100%);
+    filter: brightness(0.78) contrast(1.12) saturate(0.9);
+  }
+
+  @media (min-width: 1024px) {
+    .hero-photo {
+      -webkit-mask-image:
+        linear-gradient(to right, transparent 0%, #000 34%),
+        linear-gradient(to bottom, transparent 0%, #000 22%, #000 70%, transparent 100%);
+      mask-image:
+        linear-gradient(to right, transparent 0%, #000 34%),
+        linear-gradient(to bottom, transparent 0%, #000 22%, #000 70%, transparent 100%);
+      -webkit-mask-composite: source-in;
+      mask-composite: intersect;
+    }
+  }
+
+  /* Thin vertical studio light bars seen behind the car in the mockup. */
+  .hero-bar {
+    background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.85) 20%, rgba(255, 255, 255, 0.85) 80%, transparent);
+    box-shadow: 0 0 18px 3px rgba(255, 255, 255, 0.25);
   }
 }

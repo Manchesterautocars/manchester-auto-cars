@@ -48,7 +48,7 @@ export default function Navbar({ settings }: { settings: SiteSettings }) {
           : "border-b border-line-dark bg-ink/95 backdrop-blur"
       }`}
     >
-      <div className="container-page flex h-14 items-center justify-between sm:h-[68px]">
+      <div className="container-page flex h-16 items-center justify-between sm:h-[76px]">
         <Link
           href="/"
           className="flex items-center"
@@ -57,12 +57,12 @@ export default function Navbar({ settings }: { settings: SiteSettings }) {
           <Logo />
         </Link>
 
-        <nav className="hidden items-center gap-6 lg:flex">
+        <nav className="hidden items-center gap-9 lg:flex">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`border-b-2 pb-1 font-mono text-[11px] font-semibold uppercase tracking-wideish transition-colors ${
+              className={`border-b-2 pb-1 font-body text-[13px] font-medium transition-colors ${
                 pathname === link.href
                   ? "border-gold text-gold"
                   : "border-transparent text-surface/70 hover:text-surface"
@@ -107,7 +107,7 @@ export default function Navbar({ settings }: { settings: SiteSettings }) {
               key={link.href}
               href={link.href}
               onClick={() => setOpen(false)}
-              className="border-b border-line-dark py-3 font-mono text-sm font-semibold uppercase tracking-wideish text-surface"
+              className="border-b border-line-dark py-3 font-body text-sm font-medium text-surface"
             >
               {link.label}
             </Link>

@@ -20,7 +20,7 @@ export default function SectionHeader({
     <div className={align === "center" ? "text-center" : "text-left"}>
       {eyebrow && <p className="eyebrow mb-3">{eyebrow}</p>}
       <Heading
-        className={`h-display text-4xl sm:text-5xl md:text-6xl ${
+        className={`h-display text-3xl sm:text-4xl md:text-5xl ${
           dark ? "text-surface" : "text-ink"
         }`}
       >

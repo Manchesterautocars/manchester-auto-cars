@@ -20,7 +20,7 @@ export default function VehicleCard({
 
   return (
     <div
-      className={`group relative flex flex-col overflow-hidden rounded-[14px] border border-ink/10 bg-white transition-all duration-300 ease-premium hover:border-ink/30 hover:shadow-[0_18px_40px_-20px_rgba(11,11,12,0.35)] ${className}`}
+      className={`group relative flex flex-col overflow-hidden rounded-xl border border-ink/10 bg-white transition-all duration-300 ease-premium hover:border-ink/30 hover:shadow-[0_18px_40px_-20px_rgba(11,11,12,0.35)] ${className}`}
     >
       {/* Everything except the CTA navigates to the vehicle's detail page */}
       <Link href={`/cars/${car.slug}`} className="contents">
@@ -38,18 +38,18 @@ export default function VehicleCard({
           <div className="absolute left-3 top-3">
             <StatusBadge status={car.status} />
           </div>
-          <div className="absolute right-3 top-3 flex items-center gap-1 rounded-full border border-ink/10 bg-white/90 px-2.5 py-1 font-mono text-[11px] font-semibold text-ink backdrop-blur-sm">
+          <div className="absolute right-3 top-3 flex items-center gap-1 rounded-full border border-ink/10 bg-white/90 px-2.5 py-1 font-body text-[11px] font-semibold text-ink backdrop-blur-sm">
             <CalendarDays className="h-3 w-3" aria-hidden />
             {car.year}
           </div>
         </div>
 
         <div className="flex flex-1 flex-col gap-2.5 p-4 pb-0">
-          <h3 className="line-clamp-2 min-h-[2.6rem] font-display text-lg uppercase leading-tight tracking-tight text-ink">
+          <h3 className="line-clamp-2 min-h-[2.6rem] font-display text-base font-semibold leading-tight tracking-tight text-ink">
             {car.name}
           </h3>
 
-          <p className="font-mono text-lg font-semibold text-gold-dim">
+          <p className="font-body text-lg font-bold text-ink">
             {formatPrice(car.price)}
           </p>
 
@@ -75,7 +75,7 @@ export default function VehicleCard({
 
       <div className="p-4 pt-3">
         {isSold ? (
-          <p className="rounded-md border border-ink/10 bg-ink/[0.03] py-2.5 text-center font-mono text-xs font-semibold uppercase tracking-wideish text-mist">
+          <p className="rounded-md border border-ink/10 bg-ink/[0.03] py-2.5 text-center font-body text-xs font-semibold text-mist">
             Sold — see similar cars
           </p>
         ) : (

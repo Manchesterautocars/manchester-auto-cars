@@ -50,10 +50,10 @@ export default function Logo() {
     <span className="flex items-center gap-2.5">
       <LogoIcon />
       <span className="flex flex-col justify-center leading-none">
-        <span className="font-display text-base uppercase tracking-tight text-surface sm:text-lg">
+        <span className="font-display text-base font-bold uppercase tracking-tight text-surface sm:text-lg">
           Manchester
         </span>
-        <span className="font-mono text-[9px] uppercase tracking-platey text-gold">
+        <span className="font-body text-[9px] font-semibold uppercase tracking-platey text-gold">
           Auto Cars
         </span>
       </span>
