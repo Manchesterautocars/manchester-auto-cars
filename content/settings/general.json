@@ -1,0 +1,27 @@
+{
+  "businessName": "Manchester Auto Cars",
+  "phone": "+44 7769 006333",
+  "phoneHref": "+447769006333",
+  "whatsapp": "+44 7769 006333",
+  "whatsappHref": "447769006333",
+  "email": "Admin@manchesterautocars.com",
+  "address": "Manchester, United Kingdom",
+  "openingHours": [
+    { "day": "Monday – Friday", "hours": "9:00am – 6:00pm" },
+    { "day": "Saturday", "hours": "9:00am – 5:00pm" },
+    { "day": "Sunday", "hours": "11:00am – 4:00pm" }
+  ],
+  "socialLinks": {
+    "instagram": "https://instagram.com/manchesterautocars",
+    "facebook": "https://facebook.com/manchesterautocars"
+  },
+  "tagline": "Quality Used Cars | Competitive Prices | Honest Service",
+  "promoMessages": [
+    "We Buy Any Car From Your Doorstep",
+    "Home Delivery Available All Over UK"
+  ],
+  "homepageHeadline": "Fewer cars. Fully checked. No pressure.",
+  "homepageSubheadline": "An independent Manchester forecourt sourcing straight, well-documented used cars — and telling you the truth about every one of them.",
+  "sellSwapIntro": "Selling or swapping is usually the most stressful part of changing cars. We've tried to make ours the opposite: three fields, one message, a real reply.",
+  "mapEmbedUrl": "https://www.google.com/maps?q=Manchester+United+Kingdom&output=embed"
+}

@@ -1,0 +1,144 @@
+backend:
+  name: github
+  repo: your-github-username/manchester-auto-cars # TODO: replace with your GitHub repo
+  branch: main
+  # Decap CMS needs an OAuth proxy to authenticate with GitHub when the site
+  # itself is hosted on Vercel (not Netlify). See README.md "Decap CMS setup"
+  # for two ways to provide this. Once you have a provider URL, uncomment and
+  # set base_url (and auth_endpoint if different from the default).
+  # base_url: https://your-oauth-provider.example.com
+  # auth_endpoint: auth
+
+# Uses the Next.js dev/prod server itself to preview content changes.
+site_url: https://manchesterautocars.com
+display_url: https://manchesterautocars.com
+logo_url: /favicon.ico
+
+local_backend: true # enables `npx decap-server` for local editing without GitHub auth
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+publish_mode: simple
+
+collections:
+  - name: "cars"
+    label: "Cars"
+    label_singular: "Car"
+    folder: "content/cars"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    identifier_field: "name"
+    summary: "{{name}} — {{status}} — £{{price}}"
+    sortable_fields: ["publishDate", "price", "year", "mileage", "name"]
+    view_filters:
+      - label: "Available"
+        field: status
+        pattern: "available"
+      - label: "Reserved"
+        field: status
+        pattern: "reserved"
+      - label: "Sold"
+        field: status
+        pattern: "sold"
+      - label: "Featured"
+        field: featured
+        pattern: true
+    fields:
+      - { label: "Vehicle Name", name: "name", widget: "string", hint: "e.g. BMW 3 Series 320d M Sport" }
+      - { label: "Slug", name: "slug", widget: "string", hint: "Used in the page URL, e.g. bmw-3-series-320d" }
+      - { label: "Make", name: "make", widget: "string" }
+      - { label: "Model", name: "model", widget: "string" }
+      - { label: "Price (£)", name: "price", widget: "number", value_type: "int", min: 0 }
+      - { label: "Registration Number", name: "registration", widget: "string" }
+      - { label: "Year", name: "year", widget: "number", value_type: "int", min: 1980, max: 2030 }
+      - { label: "Mileage", name: "mileage", widget: "number", value_type: "int", min: 0 }
+      - label: "Fuel Type"
+        name: "fuelType"
+        widget: "select"
+        options: ["Petrol", "Diesel", "Hybrid", "Plug-in Hybrid", "Electric"]
+      - label: "Transmission"
+        name: "transmission"
+        widget: "select"
+        options: ["Manual", "Automatic"]
+      - { label: "Engine", name: "engine", widget: "string", required: false }
+      - { label: "Colour", name: "colour", widget: "string", required: false }
+      - label: "Body Type"
+        name: "bodyType"
+        widget: "select"
+        required: false
+        options: ["Hatchback", "Saloon", "Estate", "SUV", "Coupe", "Convertible", "MPV", "Van"]
+      - { label: "Number of Owners", name: "owners", widget: "number", value_type: "int", required: false }
+      - { label: "Service History", name: "serviceHistory", widget: "string", required: false }
+      - { label: "MOT Information", name: "motStatus", widget: "string", required: false }
+      - label: "Status"
+        name: "status"
+        widget: "select"
+        options:
+          - { label: "Available", value: "available" }
+          - { label: "Reserved", value: "reserved" }
+          - { label: "Sold", value: "sold" }
+        default: "available"
+      - { label: "Featured Vehicle", name: "featured", widget: "boolean", default: false }
+      - { label: "Main Featured Image", name: "mainImage", widget: "image", media_library: { config: { multiple: false } } }
+      - { label: "Vehicle Images (gallery)", name: "images", widget: "list", field: { label: "Image", name: "image", widget: "image" } }
+      - { label: "Features", name: "features", widget: "list", field: { label: "Feature", name: "feature", widget: "string" }, required: false }
+      - { label: "Publish Date", name: "publishDate", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "Description", name: "body", widget: "markdown" }
+
+  - name: "offers"
+    label: "Offers"
+    label_singular: "Offer"
+    folder: "content/offers"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    identifier_field: "title"
+    summary: "{{title}} — {{active}}"
+    fields:
+      - { label: "Offer Title", name: "title", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Image", name: "image", widget: "image", required: false }
+      - { label: "CTA Text", name: "ctaText", widget: "string", default: "Find out more" }
+      - { label: "CTA Link", name: "ctaLink", widget: "string", hint: "e.g. /cars or /sell-swap" }
+      - { label: "Active", name: "active", widget: "boolean", default: true }
+      - { label: "Expiry Date", name: "expiryDate", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, required: false }
+
+  - name: "settings"
+    label: "Website Settings"
+    files:
+      - name: "general"
+        label: "General Settings"
+        file: "content/settings/general.json"
+        fields:
+          - { label: "Business Name", name: "businessName", widget: "string" }
+          - { label: "Phone Number (display)", name: "phone", widget: "string", hint: "e.g. +44 7769 006333" }
+          - { label: "Phone Number (link, +country code, digits only)", name: "phoneHref", widget: "string", hint: "e.g. +447769006333" }
+          - { label: "WhatsApp Number (display)", name: "whatsapp", widget: "string" }
+          - { label: "WhatsApp Number (link, digits only incl. country code)", name: "whatsappHref", widget: "string", hint: "e.g. 447769006333" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Address", name: "address", widget: "string" }
+          - label: "Opening Hours"
+            name: "openingHours"
+            widget: "list"
+            fields:
+              - { label: "Day(s)", name: "day", widget: "string" }
+              - { label: "Hours", name: "hours", widget: "string" }
+          - label: "Social Links"
+            name: "socialLinks"
+            widget: "object"
+            fields:
+              - { label: "Instagram", name: "instagram", widget: "string", required: false }
+              - { label: "Facebook", name: "facebook", widget: "string", required: false }
+          - { label: "Primary Tagline", name: "tagline", widget: "string", required: false, hint: "Shown in the hero eyebrow, e.g. Quality Used Cars | Competitive Prices | Honest Service" }
+          - label: "Secondary Promo Messages"
+            name: "promoMessages"
+            widget: "list"
+            required: false
+            hint: "Short promotional lines, e.g. We Buy Any Car From Your Doorstep"
+          - { label: "Homepage Headline", name: "homepageHeadline", widget: "string" }
+          - { label: "Homepage Subheadline", name: "homepageSubheadline", widget: "text" }
+          - { label: "Sell/Swap Section Text", name: "sellSwapIntro", widget: "text" }
+          - { label: "Google Maps Embed URL", name: "mapEmbedUrl", widget: "string", required: false }
