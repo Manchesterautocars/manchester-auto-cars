@@ -1,4 +1,35 @@
 {
   "schemaVersion": 1,
-  "vehicles": []
+  "vehicles": [
+    {
+      "id": "mac-muppaqer-mx1ws",
+      "make": "BMW",
+      "model": "320d",
+      "variant": "M Sport",
+      "year": 2026,
+      "registration": "TEST20",
+      "mileage": 45000,
+      "fuel": "Diesel",
+      "transmission": "Automatic",
+      "engine": "2.0L",
+      "bodyType": "Saloon",
+      "colour": "Black",
+      "price": 18995,
+      "previousPrice": 19000,
+      "status": "available",
+      "featured": true,
+      "description": "Test listing to verify the vehicle publishing workflow.",
+      "highlights": [],
+      "location": "",
+      "images": [
+        "https://res.cloudinary.com/l67j6rqv/image/upload/v1790869230/manchester-auto-cars/vehicles/mac-muppaqer-mx1ws/hpqkvgesnkleyjdersv9.png",
+        "https://res.cloudinary.com/l67j6rqv/image/upload/v1790869230/manchester-auto-cars/vehicles/mac-muppaqer-mx1ws/bcswcjfr9jsfaohqoxsp.png",
+        "https://res.cloudinary.com/l67j6rqv/image/upload/v1790869230/manchester-auto-cars/vehicles/mac-muppaqer-mx1ws/v9rkvunbqzaxkjq1ujkn.png"
+      ],
+      "mainImage": "https://res.cloudinary.com/l67j6rqv/image/upload/v1790869230/manchester-auto-cars/vehicles/mac-muppaqer-mx1ws/hpqkvgesnkleyjdersv9.png",
+      "seoTitle": "Test BMW 320d M Sport Automatic | Manchester Auto Cars",
+      "seoDescription": "Test listing for the BMW 320d M Sport, 2020, automatic diesel, with 45,000 miles. Used to verify the Manchester Auto Cars vehicle publishing workflow.",
+      "dateAdded": "2026-10-01"
+    }
+  ]
 }
