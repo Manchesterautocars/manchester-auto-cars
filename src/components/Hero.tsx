@@ -101,8 +101,12 @@ export default function Hero({
           below lg: in flow under the copy, full-bleed with a soft vignette. */}
       <div
         data-reveal="image"
-        className="relative -mt-2 mb-0 h-[300px] w-full sm:h-[380px] md:h-[440px] lg:absolute lg:inset-y-0 lg:right-0 lg:z-0 lg:mt-0 lg:h-auto lg:w-[66%]"
+        className="relative -mt-2 mb-0 h-[300px] w-full max-md:-mt-6 max-md:mb-14 max-md:aspect-[16/10] max-md:h-auto sm:h-[380px] md:h-[440px] lg:absolute lg:inset-y-0 lg:right-0 lg:z-0 lg:mt-0 lg:h-auto lg:w-[66%]"
       >
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0 top-6 hidden bg-[radial-gradient(ellipse_60%_55%_at_50%_58%,rgba(229,185,63,0.16),transparent_70%)] max-md:block"
+        />
         {heroCar ? (
           <Link
             href={`/cars/${heroCar.slug}`}
@@ -115,29 +119,29 @@ export default function Hero({
               fill
               priority
               sizes="(max-width: 1024px) 100vw, 66vw"
-              className="hero-photo object-cover object-center lg:object-[60%_55%]"
+              className="hero-photo object-cover object-center max-md:object-[50%_62%] lg:object-[60%_55%]"
             />
           </Link>
         ) : null}
         {heroCar && (
-          <div className="pointer-events-none absolute bottom-8 left-5 z-10 sm:left-8 lg:bottom-[14%] lg:left-auto lg:right-10 lg:text-right">
-            <p className="font-display text-sm font-semibold text-surface sm:text-base">
+          <div className="pointer-events-none absolute bottom-8 left-5 z-10 max-md:bottom-3 max-md:right-5 sm:left-8 lg:bottom-[14%] lg:left-auto lg:right-10 lg:text-right">
+            <p className="font-display text-sm font-semibold text-surface max-md:text-base max-md:leading-tight sm:text-base">
               {heroCar.name}
             </p>
-            <p className="font-body text-xs text-gold">Featured this week</p>
+            <p className="font-body text-xs text-gold max-md:mt-1">Featured this week</p>
           </div>
         )}
       </div>
 
       {/* Copy column — on mobile it is ordered first, above the image. */}
-      <div className="container-page relative z-10 order-first pb-2 pt-24 sm:pt-28 lg:absolute lg:inset-x-0 lg:top-0 lg:mx-auto lg:pb-0 lg:pt-[170px]">
+      <div className="container-page relative z-10 order-first pb-2 pt-24 max-md:pt-[calc(4rem+env(safe-area-inset-top,0px)+2rem)] sm:pt-28 lg:absolute lg:inset-x-0 lg:top-0 lg:mx-auto lg:pb-0 lg:pt-[170px]">
         <div className="lg:max-w-[44%]">
-          <p data-reveal="eyebrow" className="eyebrow mb-5 flex items-center gap-3 text-gold">
+          <p data-reveal="eyebrow" className="eyebrow mb-5 flex items-center gap-3 text-gold max-md:mb-3">
             {eyebrow}
             <span aria-hidden className="h-px w-8 bg-gold/70" />
           </p>
 
-          <h1 className="h-display text-[2.5rem] uppercase leading-[1.04] text-surface sm:text-6xl lg:text-[4.25rem]">
+          <h1 className="h-display text-[2.5rem] uppercase leading-[1.04] text-surface max-[380px]:text-[2.2rem] sm:text-6xl lg:text-[4.25rem]">
             <span data-reveal="heading-line" className="block overflow-hidden">
               Drive the car
             </span>
@@ -148,28 +152,28 @@ export default function Hero({
 
           <p
             data-reveal="copy"
-            className="mt-5 max-w-sm font-body text-sm leading-relaxed text-surface/80 sm:text-base"
+            className="mt-4 max-w-sm font-body text-sm leading-relaxed text-surface/80 sm:mt-5 sm:text-base"
           >
             Carefully selected used cars, quality checked. Great prices.
             Honest service.
           </p>
 
-          <div data-reveal="buttons" className="mt-7 flex flex-wrap items-center gap-3">
-            <Link href="/cars" className="btn-primary">
+          <div data-reveal="buttons" className="mt-6 flex flex-wrap items-center gap-3 max-md:flex-col max-md:items-stretch max-md:gap-2.5 sm:mt-7">
+            <Link href="/cars" className="btn-primary max-md:w-full max-md:py-3.5">
               Browse Cars
               <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
-            <Link href="/sell-swap" className="btn-outline-dark">
+            <Link href="/sell-swap" className="btn-outline-dark max-md:w-full max-md:py-3.5">
               Sell or Swap Your Car
             </Link>
           </div>
 
           <div
             data-reveal="trust"
-            className="mt-9 flex flex-wrap gap-x-7 gap-y-4"
+            className="mt-9 flex flex-wrap gap-x-7 gap-y-4 max-md:mt-7 max-md:grid max-md:grid-cols-3 max-md:gap-x-3 max-md:border-t max-md:border-line-dark max-md:pt-5"
           >
             {trustPoints.map((point) => (
-              <div key={point.title} className="flex items-center gap-2.5">
+              <div key={point.title} className="flex items-center gap-2.5 max-md:flex-col max-md:items-start max-md:gap-2">
                 <point.icon className="h-5 w-5 flex-shrink-0 text-gold" strokeWidth={1.5} aria-hidden />
                 <div>
                   <p className="font-body text-xs font-semibold text-surface">
@@ -186,7 +190,7 @@ export default function Hero({
       </div>
 
       {/* Bottom fade so the hero melts into the overlapping enquiry card. */}
-      <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-24 bg-gradient-to-t from-ink to-transparent" />
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-24 bg-gradient-to-t from-ink to-transparent max-md:h-10" />
     </section>
   );
 }
