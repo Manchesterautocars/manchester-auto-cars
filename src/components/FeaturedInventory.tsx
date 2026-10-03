@@ -21,7 +21,7 @@ export default function FeaturedInventory({ cars }: { cars: Car[] }) {
   }
 
   return (
-    <section className="py-12 sm:py-16">
+    <section className="py-12 max-md:pb-10 max-md:pt-8 sm:py-16">
       <div className="container-page mb-7 flex flex-col gap-5 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
         <SectionHeader
           eyebrow="Browse Inventory"
@@ -55,13 +55,13 @@ export default function FeaturedInventory({ cars }: { cars: Car[] }) {
 
       <div
         ref={trackRef}
-        className="flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 pl-5 pr-5 sm:pl-8 lg:pl-12"
+        className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 pl-5 pr-5 max-md:scroll-pl-5 max-md:[scrollbar-width:none] max-md:[&::-webkit-scrollbar]:hidden sm:gap-5 sm:pl-8 lg:pl-12"
       >
         {cars.map((car) => (
           <VehicleCard
             key={car.slug}
             car={car}
-            className="w-[78vw] flex-shrink-0 snap-start sm:w-[300px] lg:w-[calc((100%-6rem-3.75rem)/4)] lg:min-w-[280px]"
+            className="w-[84vw] flex-shrink-0 snap-start sm:w-[300px] lg:w-[calc((100%-6rem-3.75rem)/4)] lg:min-w-[280px]"
           />
         ))}
       </div>

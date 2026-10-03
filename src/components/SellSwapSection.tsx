@@ -7,7 +7,7 @@ export default function SellSwapSection({ settings }: { settings: SiteSettings }
   const promoIcons = [Truck, Home];
 
   return (
-    <div className="relative bg-surface pb-10 sm:pb-14">
+    <div className="relative bg-surface pb-10 max-md:bg-[linear-gradient(to_bottom,#0A0A0B_3rem,#F7F7F5_3rem)] sm:pb-14">
       <div className="container-page">
         <Reveal type="fade-up">
           <div className="relative mx-auto -mt-10 max-w-[1320px] rounded-2xl border border-surface/10 bg-ink p-6 shadow-[0_30px_70px_-25px_rgba(10,10,11,0.6)] sm:-mt-14 sm:p-9 lg:-mt-24 lg:p-10">

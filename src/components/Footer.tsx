@@ -139,7 +139,7 @@ export default function Footer({ settings }: { settings: SiteSettings }) {
       </Reveal>
 
       <div className="border-t border-line-dark">
-        <div className="container-page flex flex-col items-center justify-between gap-3 py-6 font-body text-xs text-surface/50 sm:flex-row">
+        <div className="container-page flex flex-col items-center justify-between gap-3 py-6 max-md:pb-[calc(5rem+env(safe-area-inset-bottom,0px))] font-body text-xs text-surface/50 sm:flex-row">
           <p>© {new Date().getFullYear()} {settings.businessName}. All rights reserved.</p>
           <div className="flex gap-6">
             <Link href="/privacy-policy" className="hover:text-surface">
